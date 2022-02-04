@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  nginx:
+    container_name: test_lara_nginx
+    image: nginx:stable
+    ports:
+      - 8080:80
+    networks:
+      - local_network
+    volumes:
+      - ./:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - db
+      - app
+
+  app:
+    build:
+      args:
+        user: bali
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: test_lara_app
+    container_name: test_lara_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - local_network
+      
+  db:
+    image: mysql:8.0.27
+    container_name: test_lara_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+      - 3307:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - local_network
+
+networks:
+  local_network:
+    name: local_network
+
+volumes: 
+  dbdata:
+    driver: local
+    
