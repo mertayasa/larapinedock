@@ -7,19 +7,20 @@ RUN apt-get update
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install --no-install-recommends -y \
         zlib1g-dev \
         libzip-dev \
         zip \
         unzip \
-        libpng-dev \
-        nodejs \
-        npm \
-        git \
-        cron \
-        supervisor \
-        curl \
-        nano
+        libpng-dev 
+
+        # git \
+        # curl \ 
+        # nodejs \
+        # npm \
+        # cron \
+        # supervisor \
+        # nano
         
 RUN docker-php-ext-install \
         gd \
@@ -35,7 +36,7 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
-RUN npm install
+# RUN npm install
 
 WORKDIR /var/www
 USER $user

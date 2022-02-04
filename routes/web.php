@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/curl',function() {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/todos/1');    
+    $response = curl_exec($ch);
+    $err = curl_error($ch);
+    curl_close($ch);
+});
+
+Route::get('/info', function (){
+    phpinfo();
+});
+    
