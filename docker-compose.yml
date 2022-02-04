@@ -5,7 +5,7 @@ services:
     container_name: test_lara_nginx
     image: nginx:stable
     ports:
-      - 8080:80
+      - 8282:80
     networks:
       - local_network
     volumes:
