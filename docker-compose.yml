@@ -25,10 +25,10 @@ services:
     image: test_lara_app
     container_name: test_lara_app
     restart: unless-stopped
-    working_dir: /var/www
+    # working_dir: /var/www
     volumes:
       - ./:/var/www
-      - ./php.ini:/usr/local/etc/php/php.ini
+      # - ./php.ini:/usr/local/etc/php/php.ini
     networks:
       - local_network
       
