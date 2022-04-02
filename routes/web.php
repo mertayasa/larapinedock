@@ -33,4 +33,18 @@ Route::get('/curl',function() {
 Route::get('/info', function (){
     phpinfo();
 });
-    
+
+Route::get('/generate-form-data', function (){
+    $faker = Faker\Factory::create('id_ID');
+
+    return response([
+        'name' => $faker->name,
+        'address' => $faker->address,
+        'random_number' => rand(1, 3),
+        'phone' => $faker->phoneNumber,
+    ]);
+});
+
+Route::post('submit-form', function (){
+    return redirect()->back()->withInput();
+});
