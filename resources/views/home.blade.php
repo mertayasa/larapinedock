@@ -30,21 +30,26 @@
                         {!! Form::label('random_number', 'Label 2', ['class' => 'mt-3']) !!}
                         {!! Form::select('random_number', [0 => 'Please Select', 1 => 'DFG', 2 => 'CAS', 3 => 'TYU'], null, ['class' => 'form-control', 'x-model' => '$store.formData.random_number']) !!}
 
-                        <table>
+                        <table class="mt-3">
                             <tbody>
                                 <template x-for="(product, index) in $store.formData.products">
                                     <tr>
-                                        <td x-text="product.name" width="30%" class="text-left align-bottom"></td>
-                                        <td class="text-left align-bottom" width="20%">
-                                            <div class="input-group mt-3">
-                                                <span class="input-group-text" style="cursor: pointer" x-on:click="$store.formData.counter == 0 ? false : $store.formData.counter--"> - </span>
-                                                {!! Form::text('qty', null, ['class' => 'form-control number-only', 'id' => 'qty', 'x-model' => '$store.formData.counter']) !!}
-                                                <span class="input-group-text" style="cursor: pointer" x-on:click="$store.formData.counter++"> + </span>
+                                        <td x-text="product.name" width="30%" class="text-start align-middle"></td>
+                                        <td class="text-start align-middle" width="20%">
+                                            <div class="input-group">
+                                                <span class="input-group-text" style="cursor: pointer" x-on:click="$store.formData.changeQty(index, '-')"> - </span>
+                                                {!! Form::text('qty', null, ['class' => 'form-control number-only', 'id' => 'qty', 'x-model' => 'product.qty']) !!}
+                                                <span class="input-group-text" style="cursor: pointer" x-on:click="$store.formData.changeQty(index, '+')"> + </span>
                                             </div>
                                         </td>
-                                        <td class="text-left align-bottom" style="padding-left: 20px" x-on:click.prevent="$store.formData.removeProduct(index)"> <button class="btn btn-sm btn-danger">X</button> </td>
+                                        <td class="text-end align-middle" x-text="formatNumber(product.qty * product.price)"></td>
+                                        <td class="text-start align-middle" style="padding-left: 20px"> <button class="btn btn-sm btn-danger" x-on:click.prevent="$store.formData.removeProduct(index)">X</button> </td>
                                     </tr>
                                  </template>
+                                 <tr>
+                                     <td colspan="2" class="text-end">Total (Rp.) :</td>
+                                     <td class="text-end" x-text="$store.formData.total"></td>
+                                 </tr>
                             </tbody>
                         </table>
                         {{-- <div class="col-2">
@@ -223,6 +228,10 @@
                 element.target.value = element.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
             })
         }
+
+        function formatNumber(number){
+            return new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(number)
+        }
     </script>
 
     <script>
@@ -233,26 +242,31 @@
                 address: "{{ old('address', '') }}",
                 random_number: "{{ old('random_number', '') }}",
                 counter: "{{ old('counter', '0') }}",
+                total: 0,
                 products: [
                     {
                         id: 1,
                         name: "Product 1",
                         price: 10500,
+                        qty: 0,
                     },
                     {
                         id: 2,
                         name: "Product 2",
                         price: 11500,
+                        qty: 0,
                     },
                     {
                         id: 3,
                         name: "Product 3",
                         price: 12500,
+                        qty: 0,
                     },
                     {
                         id: 4,
                         name: "Product 4",
                         price: 13500,
+                        qty: 0,
                     },
                 ],
 
@@ -269,6 +283,7 @@
 
                 removeProduct(index) {
                     this.products.splice(index, 1)
+                    this.countTotal()
                 },
 
                 addProduct(){
@@ -277,10 +292,26 @@
                         name: "Product " + (this.products.length + 1),
                         price: Math.floor((Math.random() * 100000) + 1),
                     })
+                },
+
+                changeQty(index, operator){
+                    if(operator == '-'){
+                        this.products[index].qty = this.products[index].qty < 1 ? 0 : this.products[index].qty - 1;
+                    }else{
+                        this.products[index].qty = this.products[index].qty + 1;
+                    }
+
+                    this.countTotal()
+                },
+
+                countTotal(){
+                    const countTotal = this.products.reduce((total, product) => {
+                        return total + (product.price * product.qty)
+                    }, 0)
+
+                    this.total = formatNumber(countTotal)
                 }
             })
-
-            console.log(Alpine.store('formData').products);
 
             Alpine.store('text', {
                 heading: 'I ❤️ Alpine',
