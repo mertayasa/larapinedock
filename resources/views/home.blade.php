@@ -316,10 +316,12 @@
             Alpine.store('text', {
                 heading: 'I ❤️ Alpine',
                 message: 'Here is some text and Alpine will automatically update the DOM when the store changes.',
+                counter: 1,
 
                 changeHeaderText() {
-                    this.heading = 'I ❤️ Alpine 2';
-                    this.message = 'Here is some text change';
+                    this.heading = 'I ❤️ Alpine ' + this.counter;
+                    this.message = 'This text has changed for ' + this.counter + ' times';
+                    this.counter = this.counter + 1
                 }
             })
         })
