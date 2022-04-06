@@ -18,7 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/dashboard', function () {
+    return view('home');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -48,3 +50,10 @@ Route::get('/generate-form-data', function (){
 Route::post('submit-form', function (){
     return redirect()->back()->withInput();
 });
+
+// require __DIR__.'/auth.php';
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
