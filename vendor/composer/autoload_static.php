@@ -44,6 +44,10 @@ class ComposerStaticInitf144f8b6705dd5ddfa7b424d63bf4693
         array (
             'voku\\' => 5,
         ),
+        't' => 
+        array (
+            'thiagoalessio\\TesseractOCR\\' => 27,
+        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -179,6 +183,7 @@ class ComposerStaticInitf144f8b6705dd5ddfa7b424d63bf4693
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Alimranahmed\\LaraOCR\\' => 21,
         ),
     );
 
@@ -186,6 +191,10 @@ class ComposerStaticInitf144f8b6705dd5ddfa7b424d63bf4693
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'thiagoalessio\\TesseractOCR\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
@@ -519,6 +528,10 @@ class ComposerStaticInitf144f8b6705dd5ddfa7b424d63bf4693
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Alimranahmed\\LaraOCR\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alimranahmed/laraocr/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -532,6 +545,13 @@ class ComposerStaticInitf144f8b6705dd5ddfa7b424d63bf4693
     );
 
     public static $classMap = array (
+        'Alimranahmed\\LaraOCR\\Commands\\ImageParsing' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/Commands/ImageParsing.php',
+        'Alimranahmed\\LaraOCR\\Controllers\\OcrController' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/Controllers/OcrController.php',
+        'Alimranahmed\\LaraOCR\\Facades\\OCR' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/Facades/OCR.php',
+        'Alimranahmed\\LaraOCR\\LaraOCRServiceProvider' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/LaraOCRServiceProvider.php',
+        'Alimranahmed\\LaraOCR\\Services\\OcrAbstract' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/Services/OcrAbstract.php',
+        'Alimranahmed\\LaraOCR\\Services\\Shell' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/Services/Shell.php',
+        'Alimranahmed\\LaraOCR\\Services\\Tesseract' => __DIR__ . '/..' . '/alimranahmed/laraocr/src/Services/Tesseract.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
@@ -5589,6 +5609,17 @@ class ComposerStaticInitf144f8b6705dd5ddfa7b424d63bf4693
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
         'phpDocumentor\\Reflection\\Utils' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/Utils.php',
+        'thiagoalessio\\TesseractOCR\\Command' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/Command.php',
+        'thiagoalessio\\TesseractOCR\\FeatureNotAvailableException' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/FeatureNotAvailableException.php',
+        'thiagoalessio\\TesseractOCR\\FriendlyErrors' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/FriendlyErrors.php',
+        'thiagoalessio\\TesseractOCR\\ImageNotFoundException' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/ImageNotFoundException.php',
+        'thiagoalessio\\TesseractOCR\\NoWritePermissionsForOutputFile' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/NoWritePermissionsForOutputFile.php',
+        'thiagoalessio\\TesseractOCR\\Option' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/Option.php',
+        'thiagoalessio\\TesseractOCR\\Process' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/Process.php',
+        'thiagoalessio\\TesseractOCR\\TesseractNotFoundException' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/TesseractNotFoundException.php',
+        'thiagoalessio\\TesseractOCR\\TesseractOCR' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/TesseractOCR.php',
+        'thiagoalessio\\TesseractOCR\\TesseractOcrException' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/TesseractOcrException.php',
+        'thiagoalessio\\TesseractOCR\\UnsuccessfulCommandException' => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src/UnsuccessfulCommandException.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 
